@@ -12,7 +12,7 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
-  var urlimage = [
+  List<String> urlimage = [
     'https://m.media-amazon.com/images/M/MV5BMmUzOGZlNGItMGQ3ZC00ZDJkLWIwMDktM2U1NTM0NTkxYzk4XkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/I/7197L2XzWxL.jpg',
     'https://m.media-amazon.com/images/M/MV5BOWJhYjdjNWEtMWFmNC00ZjNkLThlZGEtN2NkM2U3NTVmMjZkXkEyXkFqcGc@._V1_.jpg'
@@ -227,7 +227,7 @@ class _homepageState extends State<homepage> {
     );
   }
 
-  var allmovies = [
+  List<String> allmovies = [
     'https://m.media-amazon.com/images/M/MV5BMmUzOGZlNGItMGQ3ZC00ZDJkLWIwMDktM2U1NTM0NTkxYzk4XkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BZjJmMjJmYWMtNTQyYy00NzcxLWE5N2EtMTY5NjRhMGZmYjNlXkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BYWYyOGQzOGYtMGQ1My00ZWYxLTgzZjktZWYzN2IwYjkxYzM0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
@@ -236,14 +236,14 @@ class _homepageState extends State<homepage> {
     'https://m.media-amazon.com/images/M/MV5BZjM2M2E3YzAtZDJjYy00MDhkLThiYmItOGZhNzQ3NTgyZmI0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
   ];
 
-  var webseries = [
+  List<String> webseries = [
     'https://m.media-amazon.com/images/M/MV5BNjAzMDEzZmUtYjgzMy00NTYxLWJlODItYTMyZGI4YzdmZGY4XkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg',
     'https://m.media-amazon.com/images/M/MV5BM2FiMjQ0ZjAtYzc1OC00NzgzLWIyNmQtYmIwYjdhZWM5MmRiXkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BMDcyZTNjOTEtNzc5Yy00Y2UzLThkMWYtNTY4YmM4OWI5OTMzXkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BNGI5MTljYTYtMjk0Yi00Yzc2LWJiZDktYTQwMjZkMDkzYjRhXkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BOWJhYjdjNWEtMWFmNC00ZjNkLThlZGEtN2NkM2U3NTVmMjZkXkEyXkFqcGc@._V1_.jpg',
   ];
-  var netflix =[
+  List<String> netflix =[
     'https://m.media-amazon.com/images/M/MV5BNzY4MzA4MmItMDQ3ZS00MzY5LWE4MDUtOGM3OTA1Yzc2MzQ4XkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BOWJhYjdjNWEtMWFmNC00ZjNkLThlZGEtN2NkM2U3NTVmMjZkXkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BMjRjODJlNzMtMDE3MS00NzNmLWI0OTQtMWE1NTNhNzkyYTFjXkEyXkFqcGc@._V1_.jpg',
