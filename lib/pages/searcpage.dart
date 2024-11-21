@@ -11,7 +11,7 @@ class _searchpageState extends State<searchpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Text('search page'),
+        body: Center(child: Text('search page')),
     );
   }
 }
