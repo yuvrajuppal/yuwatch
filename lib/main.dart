@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yuwatch/bottom_navigation/bottomnavbar.dart';
 
 // import 'package:yuwatch/authpages/homepage.dart';
 // import 'package:yuwatch/authpages/login.dart';
@@ -19,6 +20,6 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return homepage();
+    return bottomnavbar();
   }
 }
