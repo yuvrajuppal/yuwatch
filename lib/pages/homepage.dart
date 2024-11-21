@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:yuwatch/videostreamer/onlinevideoplayer.dart';
+// import 'package:yuwatch/videostreamer/videoplayer.dart';
 
 class homepage extends StatefulWidget {
   const homepage({super.key});
@@ -91,9 +93,16 @@ class _homepageState extends State<homepage> {
                           width: MediaQuery.of(context).size.width / 1,
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
-                              child: Image.network(
-                                movieposter,
-                                fit: BoxFit.cover,
+                              child: GestureDetector(
+                                onTap: (){
+                                  if(movieposter == urlimage[2]){
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Onlinevideoplayer()));
+                                  }
+                                },
+                                child: Image.network(
+                                  movieposter,
+                                  fit: BoxFit.cover,
+                                ),
                               )),
                         ),
                       );
@@ -106,8 +115,11 @@ class _homepageState extends State<homepage> {
                         autoPlayInterval: Duration(seconds: 8)),
                   ),
                 ),
-            
-                // Image.network(urlimage[0])
+            // listbuild(allmovies),
+                // Image.network(allmovies[0]),
+                // listbuild(allmovies)
+
+                
               ],
             ),
           ),
@@ -115,4 +127,26 @@ class _homepageState extends State<homepage> {
       ),
     );
   }
+
+var allmovies = [
+   'https://m.media-amazon.com/images/M/MV5BMmUzOGZlNGItMGQ3ZC00ZDJkLWIwMDktM2U1NTM0NTkxYzk4XkEyXkFqcGc@._V1_.jpg',
+    'https://m.media-amazon.com/images/I/7197L2XzWxL.jpg',
+    'https://m.media-amazon.com/images/M/MV5BOWJhYjdjNWEtMWFmNC00ZjNkLThlZGEtN2NkM2U3NTVmMjZkXkEyXkFqcGc@._V1_.jpg'
+];
+
+Widget listbuild(var datalist){
+  return ListView.builder(itemCount: datalist.length,
+  scrollDirection: Axis.vertical,
+  itemBuilder: (context,index){
+    return Container(
+      width: 200,
+      height: 400,
+      child: Image.network(datalist[index]),
+    );
+  },
+  
+  
+  );
+}
+
 }
