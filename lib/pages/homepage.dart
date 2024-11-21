@@ -96,7 +96,7 @@ class _homepageState extends State<homepage> {
                               child: GestureDetector(
                                 onTap: (){
                                   if(movieposter == urlimage[2]){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Onlinevideoplayer()));
+                                    
                                   }
                                 },
                                 child: Image.network(

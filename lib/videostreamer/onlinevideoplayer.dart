@@ -74,7 +74,7 @@ class _OnlinevideoplayerState extends State<Onlinevideoplayer> {
     'https://cdn.discordapp.com/attachments/1308591075803398238/1308887191090364488/video.mp4?ex=673f93b0&is=673e4230&hm=b8d892f4334048c70e3101269ca5d0bf7e18fcd99ce363a2c960c87d25ad73ca&'
   ];
   int _currentVideoIndex = 0;
-
+  
   @override
   void initState() {
     super.initState();
@@ -165,6 +165,8 @@ class _OnlinevideoplayerState extends State<Onlinevideoplayer> {
                   SizedBox(width: 10,),
                   GestureDetector(
                     onTap: (){
+                      _videoPlayerController.dispose();
+
                       Navigator.pop(context);
                     },
                     child: Icon(Icons.arrow_back_ios_new))
@@ -253,6 +255,9 @@ class _OnlinevideoplayerState extends State<Onlinevideoplayer> {
       
                     },
                     onTap: () {
+                      setState(() {
+                        _currentVideoIndex = 0;
+                      });
                      _playfromstartVideo();
                     },
                     child: Container(
