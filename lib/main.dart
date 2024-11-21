@@ -21,6 +21,6 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return bottomnavbar();
+    return mainloginsignupPage();
   }
 }

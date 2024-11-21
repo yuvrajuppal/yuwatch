@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yuwatch/bottom_navigation/bottomnavbar.dart';
 // import 'package:yuwatch/authpages/signup.dart';
 
 class loginpage extends StatefulWidget {
@@ -57,20 +58,25 @@ class _loginpageState extends State<loginpage> {
         SizedBox(
           height: 20,
         ),
-        Container(
-          padding: EdgeInsets.only(top: 5, bottom: 5),
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color(0xFF046FD2),
-          ),
-          child: Center(
-            child: Text(
-              'Sign In',
-              style: TextStyle(
-                color: Color(0xFFFFFFFF),
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
+        GestureDetector(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>bottomnavbar()));
+          },
+          child: Container(
+            padding: EdgeInsets.only(top: 5, bottom: 5),
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Color(0xFF046FD2),
+            ),
+            child: Center(
+              child: Text(
+                'Sign In',
+                style: TextStyle(
+                  color: Color(0xFFFFFFFF),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                ),
               ),
             ),
           ),
