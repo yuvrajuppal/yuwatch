@@ -24,15 +24,38 @@ class _profilepageState extends State<profilepage> {
         ),
         SingleChildScrollView(
           child: Column(
-
             children: [
-              SizedBox(height: 60,),
+              SizedBox(
+                height: 60,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Icon(Icons.settings, size: 35, color: Colors.white,),
-                  SizedBox(width: 20,)
+                  Icon(
+                    Icons.settings,
+                    size: 35,
+                    color: const Color.fromARGB(240, 255, 255, 255),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  )
                 ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      color: Color(0xff046FD2),
+                      borderRadius: BorderRadius.circular(100)),
+                  child: Icon(
+                    Icons.people_alt_outlined,
+                    size: 70,
+                    color: const Color.fromARGB(240, 255, 255, 255),
+                  ),
+                ),
               )
             ],
           ),
