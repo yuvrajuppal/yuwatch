@@ -37,7 +37,8 @@ class _loginpageState extends State<loginpage> {
             context, MaterialPageRoute(builder: (context) => bottomnavbar()));
       }
       else{
-            
+             ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Wrong email or password')));
       }
     }
   }
@@ -95,6 +96,7 @@ class _loginpageState extends State<loginpage> {
                       SnackBar(content: Text('PLease create a password')));
                 } else {}
               },
+              style: TextStyle(color: Colors.white),
               controller: password_controller,
               decoration: InputDecoration(
                   border: InputBorder.none,
