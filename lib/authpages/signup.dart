@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:yuwatch/api_connection%20/api_connection.dart';
+import 'package:random_string/random_string.dart';
+import 'package:yuwatch/bottom_navigation/bottomnavbar.dart';
 
 class signupPage extends StatefulWidget {
   const signupPage({super.key});
@@ -12,6 +18,49 @@ class _signupPageState extends State<signupPage> {
   TextEditingController email_controller = new TextEditingController();
   TextEditingController name_controller = new TextEditingController();
   TextEditingController password_controller = new TextEditingController();
+
+  validateuseremail() async {
+    try {
+      var res = await http.post(Uri.parse(API.validate_email), body: {
+        'user_email': email_controller.text.trim(),
+      });
+      if (res.statusCode == 200) {
+        print('connect sccessfully made with db');
+        var resbody = jsonDecode(res.body);
+        if (resbody['emailfound'] == true) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('email already in user')));
+        } else {
+          savadatatodbforSighUp();
+        }
+      }
+    } catch (e) {
+      print('connection error');
+    }
+  }
+
+  savadatatodbforSighUp() async {
+    String id = randomAlphaNumeric(20);
+    var res = await http.post(Uri.parse(API.signup), body: {
+      'user_id': id,
+      'user_name': name_controller.text.trim(),
+      'user_email': email_controller.text.trim(),
+      'user_password': password_controller.text.trim(),
+    });
+
+    if (res.statusCode == 200) {
+      print('savedata made connection');
+      var resbody = jsonDecode(res.body);
+      if (resbody['signup'] == true) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('registered sccessfully')));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => bottomnavbar()));
+      } else {
+
+      }
+    }
+  }
 
   final _formkey = GlobalKey<FormState>();
 
@@ -100,7 +149,6 @@ class _signupPageState extends State<signupPage> {
                 controller: password_controller,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-
                     border: InputBorder.none,
                     hoverColor: Colors.white,
                     hintText: 'Enter Paswword',
@@ -118,6 +166,7 @@ class _signupPageState extends State<signupPage> {
                     name = name_controller.text.trim();
                     password = password_controller.text.trim();
                   });
+                  validateuseremail();
                 }
               },
               child: Container(
