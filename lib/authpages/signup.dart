@@ -47,7 +47,7 @@ class _signupPageState extends State<signupPage> {
       'user_email': email_controller.text.trim(),
       'user_password': password_controller.text.trim(),
     });
-
+    
     if (res.statusCode == 200) {
       print('savedata made connection');
       var resbody = jsonDecode(res.body);
