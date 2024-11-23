@@ -81,7 +81,7 @@ class _mainloginsignupPageState extends State<mainloginsignupPage> {
                                   color: Colors.white.withOpacity(.6)),
                             ),
                             Text(
-                              login? 'Sign Up': 'Sign Up',
+                              login? 'Sign Up': 'Sign IN',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
