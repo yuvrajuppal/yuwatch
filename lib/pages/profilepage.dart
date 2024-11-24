@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class profilepage extends StatefulWidget {
   const profilepage({super.key});
@@ -38,7 +39,13 @@ class _profilepageState extends State<profilepage> {
               ]),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Text('lassan'),
+            child: CachedNetworkImage(
+              imageUrl: datalist[index],
+              placeholder: (context, url) =>
+                  Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              fit: BoxFit.cover,
+            ),
           ),
         );
       },
@@ -116,17 +123,27 @@ class _profilepageState extends State<profilepage> {
                 ),
                 Row(
                   children: [
-                    SizedBox(width: 10,),
-                    Text('My List', style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w800,
-                        // fontStyle: FontStyle,
-                        fontSize: 20,
-                        color: Colors.white),),
-                    Icon(Icons.arrow_forward_ios, size: 25, color: Colors.white,)
-
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'My List',
+                      style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w800,
+                          // fontStyle: FontStyle,
+                          fontSize: 20,
+                          color: Colors.white),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 25,
+                      color: Colors.white,
+                    )
                   ],
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 SizedBox(height: 200, child: listbuild(favlist)),
               ],
             ),

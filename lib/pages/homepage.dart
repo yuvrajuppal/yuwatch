@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:yuwatch/videostreamer/onlinevideoplayer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 // import 'package:yuwatch/videostreamer/videoplayer.dart';
 
 class homepage extends StatefulWidget {
@@ -96,10 +98,13 @@ class _homepageState extends State<homepage> {
                                 onTap: () {
                                   if (movieposter == urlimage[2]) {}
                                 },
-                                child: Image.network(
-                                  movieposter,
-                                  fit: BoxFit.cover,
-                                ),
+                                child: CachedNetworkImage(
+              imageUrl: movieposter,
+              placeholder: (context, url) =>
+                  Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              fit: BoxFit.cover,
+            ),
                               )),
                         ),
                       );
@@ -115,7 +120,6 @@ class _homepageState extends State<homepage> {
                 SizedBox(
                   height: 22,
                 ),
-
 
                 // ----------------------all movies --------------------
                 Row(
@@ -149,10 +153,12 @@ class _homepageState extends State<homepage> {
                   height: 10,
                 ),
                 SizedBox(height: 200, child: listbuild(allmovies)),
-                
-                SizedBox(height: 22,),
-        //  ---------------------------All web Series ---------------       
-                  Row(
+
+                SizedBox(
+                  height: 22,
+                ),
+                //  ---------------------------All web Series ---------------
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
@@ -183,9 +189,11 @@ class _homepageState extends State<homepage> {
                   height: 10,
                 ),
                 SizedBox(height: 200, child: listbuild(webseries)),
-                SizedBox(height: 22,),
+                SizedBox(
+                  height: 22,
+                ),
 
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
@@ -216,9 +224,10 @@ class _homepageState extends State<homepage> {
                   height: 10,
                 ),
                 SizedBox(height: 200, child: listbuild(netflix)),
-                
-                
-                SizedBox(height: 60,)
+
+                SizedBox(
+                  height: 60,
+                )
               ],
             ),
           ),
@@ -243,11 +252,10 @@ class _homepageState extends State<homepage> {
     'https://m.media-amazon.com/images/M/MV5BNGI5MTljYTYtMjk0Yi00Yzc2LWJiZDktYTQwMjZkMDkzYjRhXkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BOWJhYjdjNWEtMWFmNC00ZjNkLThlZGEtN2NkM2U3NTVmMjZkXkEyXkFqcGc@._V1_.jpg',
   ];
-  List<String> netflix =[
+  List<String> netflix = [
     'https://m.media-amazon.com/images/M/MV5BNzY4MzA4MmItMDQ3ZS00MzY5LWE4MDUtOGM3OTA1Yzc2MzQ4XkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BOWJhYjdjNWEtMWFmNC00ZjNkLThlZGEtN2NkM2U3NTVmMjZkXkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BMjRjODJlNzMtMDE3MS00NzNmLWI0OTQtMWE1NTNhNzkyYTFjXkEyXkFqcGc@._V1_.jpg',
-
   ];
   Widget listbuild(var datalist) {
     return ListView.builder(
@@ -255,28 +263,32 @@ class _homepageState extends State<homepage> {
       itemCount: datalist.length,
       itemBuilder: (context, index) {
         return Container(
-            margin: EdgeInsets.only(right: 7, left: 7),
-            width: 143,
-            // height: 10,
-            decoration: BoxDecoration(
+          margin: EdgeInsets.only(right: 7, left: 7),
+          width: 143,
+          // height: 10,
+          decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(10),
-             boxShadow: [
-              BoxShadow(
-                 color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5), // Shadow color with opacity
-        spreadRadius: 2, // Spread of the shadow
-        blurRadius: 8, // Blurriness of the shadow
-        offset: Offset(2, 4), // Offset of the shadow (x, y)
-              )
-             ]
+              boxShadow: [
+                BoxShadow(
+                  color: const Color.fromARGB(255, 0, 0, 0)
+                      .withOpacity(0.5), // Shadow color with opacity
+                  spreadRadius: 2, // Spread of the shadow
+                  blurRadius: 8, // Blurriness of the shadow
+                  offset: Offset(2, 4), // Offset of the shadow (x, y)
+                )
+              ]),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: CachedNetworkImage(
+              imageUrl: datalist[index],
+              placeholder: (context, url) =>
+                  Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              fit: BoxFit.cover,
             ),
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  datalist[index],
-                  fit: BoxFit.cover,
-                  height: 190,
-                ),),);
+          ),
+        );
       },
     );
   }
