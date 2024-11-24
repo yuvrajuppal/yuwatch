@@ -121,14 +121,14 @@ class _homepageState extends State<homepage> {
                   height: 22,
                 ),
 
-                // ----------------------all movies --------------------
+                // ----------------------all  movies--------------------
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 15),
                       child: Text(
-                        'All Web Series',
+                        'All Movies',
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w700,
                             // fontStyle: FontStyle,
@@ -157,7 +157,7 @@ class _homepageState extends State<homepage> {
                 SizedBox(
                   height: 22,
                 ),
-                //  ---------------------------All web Series ---------------
+                //  ---------------------------web series---------------
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -192,6 +192,7 @@ class _homepageState extends State<homepage> {
                 SizedBox(
                   height: 22,
                 ),
+                //  ---------------------------netflix---------------
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -199,7 +200,7 @@ class _homepageState extends State<homepage> {
                     Container(
                       margin: EdgeInsets.only(left: 15),
                       child: Text(
-                        'All Web Series',
+                        'Netflix',
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w700,
                             // fontStyle: FontStyle,
@@ -235,7 +236,6 @@ class _homepageState extends State<homepage> {
       ),
     );
   }
-
   List<String> allmovies = [
     'https://m.media-amazon.com/images/M/MV5BMmUzOGZlNGItMGQ3ZC00ZDJkLWIwMDktM2U1NTM0NTkxYzk4XkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BZjJmMjJmYWMtNTQyYy00NzcxLWE5N2EtMTY5NjRhMGZmYjNlXkEyXkFqcGc@._V1_.jpg',

@@ -10,7 +10,7 @@ class profilepage extends StatefulWidget {
 }
 
 class _profilepageState extends State<profilepage> {
-  List<String> favlist = [
+  List<String> favlist = [   
     'https://m.media-amazon.com/images/M/MV5BN2E0OWRkNTAtZGQ4ZS00M2RiLWE5ODUtZWEyNzhlODU2NjhjXkEyXkFqcGc@._V1_.jpg',
     'https://m.media-amazon.com/images/M/MV5BNGY3N2ZhYmMtYTlmYi00ZWIzLWJiZWMtMjgxMjljYTk3MDAwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
     'https://m.media-amazon.com/images/M/MV5BMTM0MDgwNjMyMl5BMl5BanBnXkFtZTcwNTg3NzAzMw@@._V1_.jpg',
