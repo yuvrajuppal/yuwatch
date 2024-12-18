@@ -109,13 +109,15 @@ class _profilepageState extends State<profilepage> {
                 ),
                 Container(
                   width: 200,
-                  child: Text(
-                    'Yuvraj Uppal',
-                    style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w800,
-                        // fontStyle: FontStyle,
-                        fontSize: 30,
-                        color: Colors.white),
+                  child: Center(
+                    child: Text(
+                      'Demo App',
+                      style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w800,
+                          // fontStyle: FontStyle,
+                          fontSize: 30,
+                          color: Colors.white),
+                    ),
                   ),
                 ),
                 SizedBox(

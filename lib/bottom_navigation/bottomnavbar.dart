@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:yuwatch/pages/catagorymoviepage.dart';
+
 import 'package:yuwatch/pages/favroritepage.dart';
 import 'package:yuwatch/pages/homepage.dart';
 import 'package:yuwatch/pages/profilepage.dart';
@@ -15,9 +15,9 @@ class bottomnavbar extends StatefulWidget {
 
 class _bottomnavbarState extends State<bottomnavbar> {
   final screnns = [
-    searchpage(),
-    Catagorymoviepage(),
-    homepage(),
+    SearchPage(),
+    
+    Displaypage(),
     Favroritepage(),
     profilepage(),
   ];
@@ -29,11 +29,7 @@ class _bottomnavbarState extends State<bottomnavbar> {
       size: 25,
       color: Colors.white,
     ),
-    Icon(
-      Icons.movie,
-      size: 25,
-      color: Colors.white,
-    ),
+    
     Icon(
       Icons.home,
       size: 25,
@@ -50,7 +46,7 @@ class _bottomnavbarState extends State<bottomnavbar> {
       color: Colors.white,
     )
   ];
-  int index = 2;
+  int index = 1;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
