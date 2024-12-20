@@ -111,7 +111,7 @@ class _profilepageState extends State<profilepage> {
                   width: 200,
                   child: Center(
                     child: Text(
-                      'Demo App',
+                      'Alpha stage App',
                       style: GoogleFonts.inter(
                           fontWeight: FontWeight.w800,
                           // fontStyle: FontStyle,

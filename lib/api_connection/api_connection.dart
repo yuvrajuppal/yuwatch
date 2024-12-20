@@ -1,6 +1,6 @@
 class API{
   
-  static const hostconnect = "http://192.168.1.6/yu_4odtYXxiZD3cI1t_watch_php";
+  static const hostconnect = "http://yuvrajuppal.in/yu_4odtYXxiZD3cI1t_watch_php";
   static const hostconnectuser = "$hostconnect/user";
 
 

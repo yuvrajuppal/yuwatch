@@ -161,11 +161,11 @@ class _InfotellerPageState extends State<InfotellerPage> {
                                                 myfav = true;
                                               });
                                             }
-
-                                         
                                           },
                                           child: Icon(
-                                            myfav ? Icons.favorite :Icons.favorite_outlined,
+                                            myfav
+                                                ? Icons.favorite
+                                                : Icons.favorite_outlined,
                                             size: 35,
                                             color: Colors.white,
                                           ),

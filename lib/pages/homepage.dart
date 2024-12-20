@@ -6,12 +6,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:yuwatch/api_connection/api_connection.dart';
 
-
 import 'package:http/http.dart' as http;
 import 'package:yuwatch/interpages/allcategorydisplay.dart';
 import 'package:yuwatch/interpages/allmoviesandwebdisplay.dart';
 import 'package:yuwatch/interpages/infoteller.dart';
-
 
 // import 'package:yuwatch/videostreamer/videoplayer.dart';
 
@@ -48,7 +46,6 @@ class _DisplaypageState extends State<Displaypage> {
     try {
       List<allmoviesdata> movies = await fetchmovies();
       urlimage = movies.map((movie) => movie.imagelink).toList();
-     
     } catch (e) {
       print('Error fetching image links: $e');
     }
@@ -69,8 +66,8 @@ class _DisplaypageState extends State<Displaypage> {
   }
 
   List<String> urlimage = [];
-  List<String> iddata =[];
-  List<String> movieorwebs=[];
+  List<String> iddata = [];
+  List<String> movieorwebs = [];
   @override
   void initState() {
     // TODO: implement initState
@@ -117,8 +114,9 @@ class _DisplaypageState extends State<Displaypage> {
                             color: Colors.white),
                       ),
                       GestureDetector(
-                        onTap: (){
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('coming soon')));
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('coming soon')));
                         },
                         child: Icon(
                           Icons.download,
@@ -163,11 +161,10 @@ class _DisplaypageState extends State<Displaypage> {
                             .map((movie) => movie.imagelink)
                             .toList();
 
-                          iddata = snapshot.data!
-                            .map((movie) => movie.id)
-                            .toList();
+                        iddata =
+                            snapshot.data!.map((movie) => movie.id).toList();
 
-                          movieorwebs =  snapshot.data!
+                        movieorwebs = snapshot.data!
                             .map((movie) => movie.movieorwebs)
                             .toList();
                         return Center(
@@ -183,7 +180,15 @@ class _DisplaypageState extends State<Displaypage> {
                                       borderRadius: BorderRadius.circular(20),
                                       child: GestureDetector(
                                         onTap: () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>InfotellerPage(id: iddata[index], web_movie: movieorwebs[index],)));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      InfotellerPage(
+                                                        id: iddata[index],
+                                                        web_movie:
+                                                            movieorwebs[index],
+                                                      )));
                                         },
                                         child: CachedNetworkImage(
                                           imageUrl: movieposter,
@@ -257,7 +262,10 @@ class _DisplaypageState extends State<Displaypage> {
                 SizedBox(
                   height: 10,
                 ),
-                SizedBox(height: 200, child:listbuil(API.allmovies_or_webs_displaydata, 'movie' , 'movieorwebs')),
+                SizedBox(
+                    height: 200,
+                    child: listbuil(API.allmovies_or_webs_displaydata, 'movie',
+                        'movieorwebs')),
 
                 SizedBox(
                   height: 22,
@@ -280,8 +288,8 @@ class _DisplaypageState extends State<Displaypage> {
                     Container(
                       margin: EdgeInsets.only(right: 15),
                       child: GestureDetector(
-                        onTap: (){
-                           Navigator.push(
+                        onTap: () {
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => allmoviespage(
@@ -304,7 +312,10 @@ class _DisplaypageState extends State<Displaypage> {
                 SizedBox(
                   height: 10,
                 ),
-                SizedBox(height: 200, child: listbuil(API.allmovies_or_webs_displaydata, 'webseries' , 'movieorwebs')),
+                SizedBox(
+                    height: 200,
+                    child: listbuil(API.allmovies_or_webs_displaydata,
+                        'webseries', 'movieorwebs')),
                 SizedBox(
                   height: 22,
                 ),
@@ -352,7 +363,10 @@ class _DisplaypageState extends State<Displaypage> {
                 SizedBox(
                   height: 10,
                 ),
-                SizedBox(height: 200, child: listbuil(API.all_category_display_data, 'netflix' , 'category')),
+                SizedBox(
+                    height: 200,
+                    child: listbuil(
+                        API.all_category_display_data, 'netflix', 'category')),
 
                 SizedBox(
                   height: 22,
@@ -402,7 +416,10 @@ class _DisplaypageState extends State<Displaypage> {
                 SizedBox(
                   height: 10,
                 ),
-                SizedBox(height: 200, child: listbuil(API.all_category_display_data, 'prime' , 'category')),
+                SizedBox(
+                    height: 200,
+                    child: listbuil(
+                        API.all_category_display_data, 'prime', 'category')),
 
                 SizedBox(
                   height: 22,
@@ -454,7 +471,10 @@ class _DisplaypageState extends State<Displaypage> {
                 SizedBox(
                   height: 10,
                 ),
-                SizedBox(height: 200, child: listbuil(API.all_category_display_data, 'appletv' , 'category')),
+                SizedBox(
+                    height: 200,
+                    child: listbuil(
+                        API.all_category_display_data, 'appletv', 'category')),
 
                 SizedBox(
                   height: 22,
@@ -506,7 +526,10 @@ class _DisplaypageState extends State<Displaypage> {
                 SizedBox(
                   height: 10,
                 ),
-                SizedBox(height: 200, child: listbuil( API.all_category_display_data, 'disney' , 'category' )),
+                SizedBox(
+                    height: 200,
+                    child: listbuil(
+                        API.all_category_display_data, 'disney', 'category')),
 
                 SizedBox(
                   height: 22,
@@ -525,80 +548,82 @@ class _DisplaypageState extends State<Displaypage> {
     );
   }
 
+  Widget listbuil(String api, String movie_webs, String apibody) {
+    return FutureBuilder<List<allmoviesdata>>(
+        future: displaymovies_webs_fetchuser(api, movie_webs, apibody),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error ${snapshot.error}'),
+            );
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(
+              child: Text('no data fount'),
+            );
+          } else {
+            final data = snapshot.data!;
+            return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final rowdata = data[index];
+                return Container(
+                  margin: EdgeInsets.only(right: 7, left: 7),
+                  width: 143,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withOpacity(0.5), // Shadow color with opacity
+                          spreadRadius: 2, // Spread of the shadow
+                          blurRadius: 8, // Blurriness of the shadow
+                          offset: Offset(2, 4), // Offset of the shadow (x, y)
+                        )
+                      ]),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => InfotellerPage(
+                                    id: rowdata.id,
+                                    web_movie: rowdata.movieorwebs,
+                                  )));
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: CachedNetworkImage(
+                        imageUrl: rowdata.imagelink,
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+        });
+  }
 
-
-
-
-  Widget listbuil(String api, String movie_webs, String apibody){
-  
-  return FutureBuilder<List<allmoviesdata>>(future: displaymovies_webs_fetchuser(api,movie_webs,apibody), builder: (context, snapshot){
-    if(snapshot.connectionState == ConnectionState.waiting){
-      return Center(child: CircularProgressIndicator(),);
-    }else if(snapshot.hasError){
-        return Center(child: Text('Error ${snapshot.error}'),);
+  Future<List<allmoviesdata>> displaymovies_webs_fetchuser(
+      String api, String movie_webs, String apibody) async {
+    var respose = await http.post(Uri.parse(api), body: {
+      '$apibody': movie_webs,
+    });
+    if (respose.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(respose.body);
+      return data.map((json) => allmoviesdata.fromJson(json)).toList();
+    } else {
+      throw Exception('fail to load data');
     }
-    else if(!snapshot.hasData ||snapshot.data!.isEmpty){
-      return Center(child: Text('no data fount'),);
-    }else{
-      final data = snapshot.data!;
-      return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        final rowdata = data[index];
-        return Container(
-          margin: EdgeInsets.only(right: 7, left: 7),
-          width: 143,
-
-          decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color.fromARGB(255, 0, 0, 0)
-                      .withOpacity(0.5), // Shadow color with opacity
-                  spreadRadius: 2, // Spread of the shadow
-                  blurRadius: 8, // Blurriness of the shadow
-                  offset: Offset(2, 4), // Offset of the shadow (x, y)
-                )
-              ]),
-          child: GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>InfotellerPage(id: rowdata.id, web_movie: rowdata.movieorwebs,)));
-            },
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: CachedNetworkImage(
-                imageUrl: rowdata.imagelink,
-                placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-    }
-  });
+  }
 }
-
-
-Future<List<allmoviesdata>> displaymovies_webs_fetchuser(String api,String movie_webs, String apibody)async{
-      var respose =  await http.post(Uri.parse(api),
-        body: {
-              '$apibody':movie_webs,
-        }
-      );
-      if(respose.statusCode==200){
-        final List<dynamic> data = jsonDecode(respose.body);
-        return data.map((json)=>allmoviesdata.fromJson(json)).toList();
-      }
-      else{
-        throw Exception('fail to load data');
-      }
-}
-
-}
-
