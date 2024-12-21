@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:yuwatch/api_connection/api_connection.dart';
 import 'package:random_string/random_string.dart';
 import 'package:yuwatch/bottom_navigation/bottomnavbar.dart';
+import 'package:yuwatch/providers/sharedPreference.dart';
 
 class signupPage extends StatefulWidget {
   const signupPage({super.key});
@@ -54,6 +55,9 @@ class _signupPageState extends State<signupPage> {
       if (resbody['signup'] == true) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('registered sccessfully')));
+        shareprefhelper().saveusername(email_controller.text.trim());
+        shareprefhelper().saveuserpass(password_controller.text.trim());
+        shareprefhelper().saveLoginState(true);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => bottomnavbar()));
       } else {
@@ -151,7 +155,7 @@ class _signupPageState extends State<signupPage> {
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hoverColor: Colors.white,
-                    hintText: 'Enter Paswword',
+                    hintText: 'Enter Pasword',
                     hintStyle: TextStyle(color: Colors.white.withOpacity(.5))),
               ),
             ),

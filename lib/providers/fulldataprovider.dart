@@ -7,15 +7,11 @@ class fulldataprovider extends ChangeNotifier{
  
   
   List<String> favid=[];
-  List<String> favlinks=[];
+  String? useremail;
 
-
+ 
 
   int allmovieswebslength=0;
 
-  void emptyinfo(){ 
-   favid=[];
-   favlinks=[];
-  }
-
+ 
 }

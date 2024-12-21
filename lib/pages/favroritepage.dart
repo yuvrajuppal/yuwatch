@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:yuwatch/api_connection/api_connection.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:yuwatch/interpages/infoteller.dart';
+import 'package:provider/provider.dart';
+import 'package:yuwatch/providers/fulldataprovider.dart';
 
 class Favroritepage extends StatefulWidget {
   const Favroritepage({super.key});
@@ -15,7 +17,23 @@ class Favroritepage extends StatefulWidget {
 }
 
 class _FavroritepageState extends State<Favroritepage> {
-  List<String> favlist = ['49452d8E32Z', '78625r90358'];
+  List<String>? favlist;
+ 
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    valgetter();
+  }
+
+void valgetter()async{
+  final providerobj = Provider.of<fulldataprovider>(context, listen: false);
+  // favlist = await shareprefhelper().getfavlist();
+  favlist = providerobj.favid;
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,11 +64,12 @@ class _FavroritepageState extends State<Favroritepage> {
                     color: Colors.white),
               ),
             ),
+            
             Expanded(
               child: ListView.builder(
-                  itemCount: favlist.length,
+                  itemCount: favlist!.length,
                   itemBuilder: (context, index) {
-                    final data = favlist[index];
+                    final data = favlist![index];
                     return FutureBuilder<favdata>(future: fetchfavdata(data), builder: (context, snapshot){
                                if(snapshot.connectionState==ConnectionState.waiting){
                                     return Center(child: CircularProgressIndicator());

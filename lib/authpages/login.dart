@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:yuwatch/bottom_navigation/bottomnavbar.dart';
 // import 'package:yuwatch/authpages/signup.dart';
 import 'package:yuwatch/api_connection/api_connection.dart';
+import 'package:yuwatch/providers/sharedPreference.dart';
+import 'package:provider/provider.dart';
+import 'package:yuwatch/providers/fulldataprovider.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -33,11 +36,15 @@ class _loginpageState extends State<loginpage> {
       if (resbody['login'] == true) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('login sccessfully')));
+        shareprefhelper().saveusername(email_controller.text.trim());
+        shareprefhelper().saveuserpass(password_controller.text.trim());
+        shareprefhelper().saveLoginState(true);
+        Provider.of<fulldataprovider>(context, listen: false).useremail =
+            email_controller.text.trim();
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => bottomnavbar()));
-      }
-      else{
-             ScaffoldMessenger.of(context)
+      } else {
+        ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Wrong email or password')));
       }
     }

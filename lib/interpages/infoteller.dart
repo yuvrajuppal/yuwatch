@@ -6,6 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:yuwatch/api_connection/api_connection.dart';
 import 'package:yuwatch/interpages/downloadandstream.dart';
+import 'package:provider/provider.dart';
+import 'package:yuwatch/providers/fulldataprovider.dart';
+import 'package:yuwatch/providers/sharedPreference.dart';
 
 class InfotellerPage extends StatefulWidget {
   String id, web_movie;
@@ -17,7 +20,7 @@ class InfotellerPage extends StatefulWidget {
 
 class _InfotellerPageState extends State<InfotellerPage> {
   String? getterid, web_movie;
-  bool myfav = false;
+  bool? myfav ;
 
   Future<allinfodata> fetchmovies() async {
     try {
@@ -43,6 +46,8 @@ class _InfotellerPageState extends State<InfotellerPage> {
   void getvals() {
     getterid = widget.id;
     web_movie = widget.web_movie;
+    final providerobj = Provider.of<fulldataprovider>(context, listen: false);
+    myfav  = providerobj.favid.contains(getterid);
   }
 
   @override
@@ -152,20 +157,29 @@ class _InfotellerPageState extends State<InfotellerPage> {
                                         margin: EdgeInsets.only(right: 10),
                                         child: GestureDetector(
                                           onTap: () {
-                                            if (myfav) {
+                                            if (myfav!) {
                                               setState(() {
                                                 myfav = false;
+                                                print(myfav);
                                               });
+                                              final providerobj = Provider.of<fulldataprovider>(context, listen: false);
+                                              providerobj.favid.remove(getterid!);
+                                              shareprefhelper().savefavlist(providerobj.favid);
+
                                             } else {
                                               setState(() {
                                                 myfav = true;
+                                                print(myfav);
                                               });
+                                              final providerobj = Provider.of<fulldataprovider>(context, listen: false);
+                                              providerobj.favid.add(getterid!);
+                                              shareprefhelper().savefavlist(providerobj.favid);
                                             }
                                           },
                                           child: Icon(
-                                            myfav
+                                            myfav!
                                                 ? Icons.favorite
-                                                : Icons.favorite_outlined,
+                                                : Icons.favorite_outline,
                                             size: 35,
                                             color: Colors.white,
                                           ),

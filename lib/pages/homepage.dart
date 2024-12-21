@@ -10,6 +10,9 @@ import 'package:http/http.dart' as http;
 import 'package:yuwatch/interpages/allcategorydisplay.dart';
 import 'package:yuwatch/interpages/allmoviesandwebdisplay.dart';
 import 'package:yuwatch/interpages/infoteller.dart';
+import 'package:yuwatch/providers/sharedPreference.dart';
+import 'package:provider/provider.dart';
+import 'package:yuwatch/providers/fulldataprovider.dart';
 
 // import 'package:yuwatch/videostreamer/videoplayer.dart';
 
@@ -41,6 +44,8 @@ class allmoviesdata {
   }
 }
 
+
+
 class _DisplaypageState extends State<Displaypage> {
   Future<void> loadImageLinks() async {
     try {
@@ -65,6 +70,14 @@ class _DisplaypageState extends State<Displaypage> {
     }
   }
 
+List<String> ? tempfavlist;
+  void favlistgetter()async{
+     final providerobj = Provider.of<fulldataprovider>(context, listen: false);
+  // favlist = await shareprefhelper().getfavlist();
+ tempfavlist =   await shareprefhelper().getfavlist();
+ providerobj.favid = tempfavlist!;
+    
+  }
   List<String> urlimage = [];
   List<String> iddata = [];
   List<String> movieorwebs = [];
@@ -73,6 +86,7 @@ class _DisplaypageState extends State<Displaypage> {
     // TODO: implement initState
     super.initState();
     loadImageLinks();
+    favlistgetter();
   }
 
   @override
