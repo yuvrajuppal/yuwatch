@@ -42,7 +42,13 @@ class _InfotellerPageState extends State<InfotellerPage> {
       throw Exception('Error fetching movies: $e');
     }
   }
+  void addrecentmovies(){
+      final providerobj = Provider.of<fulldataprovider>(context, listen: false);
+ 
+      providerobj.recentopenid.add(getterid!);
+      shareprefhelper().saveRecentmovie(providerobj.recentopenid.toSet().toList());
 
+  }
   void getvals() {
     getterid = widget.id;
     web_movie = widget.web_movie;
@@ -55,6 +61,7 @@ class _InfotellerPageState extends State<InfotellerPage> {
     // TODO: implement initState
     super.initState();
     getvals();
+    addrecentmovies();
   }
 
   @override

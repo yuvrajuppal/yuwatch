@@ -6,7 +6,7 @@ class shareprefhelper {
   static String favlistIDkey = "favlist_id";
   static String movieorwebslistIDkey = "moviewebslist_id";
   static String loginkeyid= "loginkeyid";
-
+  static String recentmoviesid = "recentmoviesID";
 // ------------------------------save data------------------------------------------
   Future<bool> saveusername(String getusername) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -27,6 +27,10 @@ class shareprefhelper {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     await pref.setStringList(movieorwebslistIDkey, getmovieweb);
   }
+  Future<void> saveRecentmovie(List<String> getRecentmovieweb) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setStringList(recentmoviesid, getRecentmovieweb);
+  }
 
 // -----------------------data getter ------------------------------------------
 
@@ -37,6 +41,10 @@ class shareprefhelper {
    Future<List<String>?> getmovieweb() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     return pref.getStringList(movieorwebslistIDkey);
+  }
+   Future<List<String>?> getrecenmovieweb() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getStringList(recentmoviesid);
   }
 
 
@@ -52,5 +60,12 @@ Future<bool> getLoginState() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getBool(loginkeyid) ?? false; // Default is false
 }
-  
+
+// -------------------------------------getuseremail-----------------------------------
+
+  Future<String?>getuseremail ()async{
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  return pref.getString(usernameIDkey);
 }
+}
+

@@ -10,7 +10,8 @@ class fulldataprovider extends ChangeNotifier{
   String? useremail;
 
  
-
+  List<String> recentopenid = [];
+  
   int allmovieswebslength=0;
 
  

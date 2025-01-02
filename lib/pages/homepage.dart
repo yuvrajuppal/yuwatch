@@ -70,14 +70,22 @@ class _DisplaypageState extends State<Displaypage> {
     }
   }
 
-List<String> ? tempfavlist;
+List<String>? temprecentlist;
+List<String>? tempfavlist;
   void favlistgetter()async{
      final providerobj = Provider.of<fulldataprovider>(context, listen: false);
   // favlist = await shareprefhelper().getfavlist();
  tempfavlist =   await shareprefhelper().getfavlist();
  providerobj.favid = tempfavlist!;
+ temprecentlist = await shareprefhelper().getrecenmovieweb();
+ providerobj.recentopenid= temprecentlist!;
     
   }
+  void getemailfromshr() async{
+     final providerobj = Provider.of<fulldataprovider>(context, listen: false);
+     providerobj.useremail=  await shareprefhelper().getuseremail();
+  }
+
   List<String> urlimage = [];
   List<String> iddata = [];
   List<String> movieorwebs = [];
@@ -87,7 +95,9 @@ List<String> ? tempfavlist;
     super.initState();
     loadImageLinks();
     favlistgetter();
+    getemailfromshr();
   }
+
 
   @override
   Widget build(BuildContext context) {
