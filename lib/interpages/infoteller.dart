@@ -45,6 +45,10 @@ class _InfotellerPageState extends State<InfotellerPage> {
   void addrecentmovies(){
       final providerobj = Provider.of<fulldataprovider>(context, listen: false);
  
+      
+      if(providerobj.recentopenid.contains(getterid)){
+        providerobj.recentopenid.remove(getterid);
+      }
       providerobj.recentopenid.add(getterid!);
       shareprefhelper().saveRecentmovie(providerobj.recentopenid.toSet().toList());
 

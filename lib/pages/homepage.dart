@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:yuwatch/interpages/allcategorydisplay.dart';
 import 'package:yuwatch/interpages/allmoviesandwebdisplay.dart';
 import 'package:yuwatch/interpages/infoteller.dart';
+import 'package:yuwatch/pages/nointernetpage.dart';
 import 'package:yuwatch/providers/sharedPreference.dart';
 import 'package:provider/provider.dart';
 import 'package:yuwatch/providers/fulldataprovider.dart';
@@ -44,8 +45,6 @@ class allmoviesdata {
   }
 }
 
-
-
 class _DisplaypageState extends State<Displaypage> {
   Future<void> loadImageLinks() async {
     try {
@@ -56,6 +55,11 @@ class _DisplaypageState extends State<Displaypage> {
     }
   }
 
+  void nointernetpage() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => Nointernetpage()));
+  }
+
   Future<List<allmoviesdata>> fetchmovies() async {
     try {
       var response = await http.get(Uri.parse(API.latest_uploads));
@@ -63,27 +67,29 @@ class _DisplaypageState extends State<Displaypage> {
         final List<dynamic> data = jsonDecode(response.body);
         return data.map((json) => allmoviesdata.fromJson(json)).toList();
       } else {
-        throw Exception('Failed to load movies: ${response.statusCode}');
+        nointernetpage();
+        throw Exception('server error');
       }
     } catch (e) {
-      throw Exception('Error fetching movies: $e');
+      nointernetpage();
+      throw Exception('no internet');
     }
   }
 
-List<String>? temprecentlist;
-List<String>? tempfavlist;
-  void favlistgetter()async{
-     final providerobj = Provider.of<fulldataprovider>(context, listen: false);
-  // favlist = await shareprefhelper().getfavlist();
- tempfavlist =   await shareprefhelper().getfavlist();
- providerobj.favid = tempfavlist!;
- temprecentlist = await shareprefhelper().getrecenmovieweb();
- providerobj.recentopenid= temprecentlist!;
-    
+  List<String>? temprecentlist;
+  List<String>? tempfavlist;
+  void favlistgetter() async {
+    final providerobj = Provider.of<fulldataprovider>(context, listen: false);
+    // favlist = await shareprefhelper().getfavlist();
+    tempfavlist = await shareprefhelper().getfavlist();
+    providerobj.favid = tempfavlist!;
+    temprecentlist = await shareprefhelper().getrecenmovieweb();
+    providerobj.recentopenid = temprecentlist!;
   }
-  void getemailfromshr() async{
-     final providerobj = Provider.of<fulldataprovider>(context, listen: false);
-     providerobj.useremail=  await shareprefhelper().getuseremail();
+
+  void getemailfromshr() async {
+    final providerobj = Provider.of<fulldataprovider>(context, listen: false);
+    providerobj.useremail = await shareprefhelper().getuseremail();
   }
 
   List<String> urlimage = [];
@@ -97,7 +103,6 @@ List<String>? tempfavlist;
     favlistgetter();
     getemailfromshr();
   }
-
 
   @override
   Widget build(BuildContext context) {

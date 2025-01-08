@@ -7,6 +7,7 @@ import 'package:yuwatch/api_connection/api_connection.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:yuwatch/interpages/infoteller.dart';
 import 'package:provider/provider.dart';
+import 'package:yuwatch/pages/nointernetpage.dart';
 import 'package:yuwatch/providers/fulldataprovider.dart';
 
 class Favroritepage extends StatefulWidget {
@@ -161,8 +162,12 @@ void valgetter()async{
       ],
     ));
   }
-
+void nointernetpage() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => Nointernetpage()));
+  }
   Future<favdata> fetchfavdata(String id) async {
+    
     try {
       var respose = await http.post(Uri.parse(API.favdatafinder), body: {
         'id': id.trim(),
@@ -172,16 +177,20 @@ void valgetter()async{
         if (data.isNotEmpty) {
           return favdata.fromJson(data.first);
         } else {
-          throw Exception('no data found');
+          nointernetpage();
+          throw Exception('server error');
         }
       } else {
-        throw Exception('fail to load data');
+        nointernetpage();
+        throw Exception('server error');
       }
     } catch (e) {
-      throw Exception('error fetching');
+      nointernetpage();
+      throw Exception('internet error');
     }
   }
 }
+
 
 class favdata {
   String? sno, id, allnames, movieorwebs, imagelink, category;

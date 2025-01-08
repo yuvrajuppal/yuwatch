@@ -67,5 +67,9 @@ Future<bool> getLoginState() async {
   SharedPreferences pref = await SharedPreferences.getInstance();
   return pref.getString(usernameIDkey);
 }
+  Future<String?>getuserpass ()async{
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  return pref.getString(userpassIDkey);
+}
 }
 
