@@ -29,4 +29,5 @@ class API {
   static const all_category_show =
       "$hostconnect/search_and_data/all_category_show.php";
   static const favdatafinder = "$hostconnect/search_and_data/favdatafinder.php";
+  static const appversion = "$hostconnect/user/getappversion.php";
 }

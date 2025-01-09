@@ -228,10 +228,7 @@ class _signupPageState extends State<signupPage> {
             SizedBox(
               height: 10,
             ),
-            Text(
-              'Forget Password?',
-              style: TextStyle(color: Colors.white.withOpacity(.6)),
-            ),
+            
           ]),
     );
   }

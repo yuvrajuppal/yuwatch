@@ -11,6 +11,7 @@ import 'package:yuwatch/interpages/allcategorydisplay.dart';
 import 'package:yuwatch/interpages/allmoviesandwebdisplay.dart';
 import 'package:yuwatch/interpages/infoteller.dart';
 import 'package:yuwatch/pages/nointernetpage.dart';
+import 'package:yuwatch/pages/update.dart';
 import 'package:yuwatch/providers/sharedPreference.dart';
 import 'package:provider/provider.dart';
 import 'package:yuwatch/providers/fulldataprovider.dart';
@@ -45,6 +46,19 @@ class allmoviesdata {
   }
 }
 
+class getappversion {
+  String? version,download_url;
+  getappversion({required this.version , required this.download_url});
+
+  factory getappversion.fromJson(Map<String, dynamic> json) {
+    return getappversion(
+      version: json['version'],
+      download_url:json['download_url'],
+    );
+  }
+}
+
+
 class _DisplaypageState extends State<Displaypage> {
   Future<void> loadImageLinks() async {
     try {
@@ -58,6 +72,43 @@ class _DisplaypageState extends State<Displaypage> {
   void nointernetpage() {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => Nointernetpage()));
+  }
+
+  void getcurrentappversion() async {
+    String? currentAppVersion,LatestAppversion, download_url_main;
+    try {
+      currentAppVersion='1.00';
+      print('Requesting: ${API.appversion}');
+      var response = await http.post(Uri.parse(API.appversion));
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+
+        if (data.isNotEmpty) {
+          getappversion getlatestappversion =
+              getappversion.fromJson(data.first);
+              LatestAppversion=getlatestappversion.version;
+              download_url_main = getlatestappversion.download_url;
+          print(getlatestappversion.version);
+          print(download_url_main);
+          if(currentAppVersion==LatestAppversion){
+            
+          }else{
+Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>UpdatePage(download_url: download_url_main!,)));
+          }
+        } else {
+          print('appversion : na');
+          // Exception('appversion : na');
+        }
+      } else {
+        print('appversion : na else ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Failed to load app versionsssssssssss $e');
+    }
+  }
+
+  void getlatestappversion() {
+    getcurrentappversion();
   }
 
   Future<List<allmoviesdata>> fetchmovies() async {
@@ -102,6 +153,7 @@ class _DisplaypageState extends State<Displaypage> {
     loadImageLinks();
     favlistgetter();
     getemailfromshr();
+    getlatestappversion();
   }
 
   @override

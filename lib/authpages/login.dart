@@ -19,11 +19,25 @@ class loginpage extends StatefulWidget {
   State<loginpage> createState() => _loginpageState();
 }
 
+
 class _loginpageState extends State<loginpage> {
+
   String? email, password;
   TextEditingController email_controller = new TextEditingController();
   TextEditingController password_controller = new TextEditingController();
   final _formkey = GlobalKey<FormState>();
+
+  void guestlogin()async{
+     ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('guest login')));
+        shareprefhelper().saveusername('guest@gmail.com');
+        shareprefhelper().saveuserpass('guest');
+        shareprefhelper().saveLoginState(true);
+        Provider.of<fulldataprovider>(context, listen: false).useremail = 'guest@gmail.com';
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => bottomnavbar()));
+
+  }
 
   signupmethod() async {
     var res = await http.post(Uri.parse(API.login), body: {
@@ -187,10 +201,33 @@ class _loginpageState extends State<loginpage> {
           SizedBox(
             height: 10,
           ),
-          Text(
-            'Forget Password?',
-            style: TextStyle(color: Colors.white.withOpacity(.6)),
-          )
+          GestureDetector(
+            onTap: (){
+             guestlogin();
+            },
+            child: Container(
+              padding: EdgeInsets.only(top: 5, bottom: 5),
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xFF046FD2),
+              ),
+              child: Center(
+                child: Text(
+                  'Sign in as Guest Account',
+                  style: TextStyle(
+                    color: Color(0xFFFFFFFF),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          
         ],
       ),
     );

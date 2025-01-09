@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yuwatch/authpages/forgetpassword.dart';
 import 'package:yuwatch/authpages/login.dart';
 import 'package:yuwatch/authpages/signup.dart';
 
@@ -10,6 +11,12 @@ class mainloginsignupPage extends StatefulWidget {
 }
 
 class _mainloginsignupPageState extends State<mainloginsignupPage> {
+  List<Widget> screnns = [
+    loginpage(),
+    Forgetpasswordpage(),
+    signupPage(),
+  ];
+  Widget currentpage = loginpage();
   bool login = true;
   @override
   Widget build(BuildContext context) {
@@ -52,21 +59,38 @@ class _mainloginsignupPageState extends State<mainloginsignupPage> {
                   // mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    login ? loginpage() : signupPage(),
+                    currentpage,
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          currentpage = Forgetpasswordpage();
+                        });
+                      },
+                      child: Text(
+                        'Forget Password?',
+                        style: TextStyle(color: Colors.white.withOpacity(.6)),
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          if (login == true) {
-                            login = false;
-                         
-                          } else {
-                            login = true;
-                          }
-                        });
-                           print(login);
+                        if (login == true) {
+                          login = false;
+                          print('sign up page called');
+                          setState(() {
+                            currentpage = signupPage();
+                          });
+                        } else {
+                          login = true;
+                          print('login page called');
+                          setState(() {
+                            currentpage = loginpage();
+                          });
+                        }
+
+                        print(login);
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -76,12 +100,14 @@ class _mainloginsignupPageState extends State<mainloginsignupPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              login ?  'You are a new user? ' : 'Already have an account ? ',
+                              login
+                                  ? 'You are a new user? '
+                                  : 'Already have an account ? ',
                               style: TextStyle(
                                   color: Colors.white.withOpacity(.6)),
                             ),
                             Text(
-                              login? 'Sign Up': 'Sign IN',
+                              login ? 'Sign Up' : 'Sign IN',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
