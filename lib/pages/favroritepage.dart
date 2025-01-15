@@ -9,7 +9,7 @@ import 'package:yuwatch/interpages/infoteller.dart';
 import 'package:provider/provider.dart';
 import 'package:yuwatch/pages/nointernetpage.dart';
 import 'package:yuwatch/providers/fulldataprovider.dart';
-
+// .
 class Favroritepage extends StatefulWidget {
   const Favroritepage({super.key});
 
