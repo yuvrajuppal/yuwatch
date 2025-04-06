@@ -430,17 +430,7 @@ class _profilepageState extends State<profilepage> {
                   height: 20,
                 ),
                 SizedBox(height: 200, child: listbuild(recentid!)),
-                GestureDetector(
-                  onTap: () {
-                    final providerobj =
-                        Provider.of<fulldataprovider>(context, listen: false);
-
-                    print(providerobj.recentopenid.toSet().toList());
-                  },
-                  child: Container(
-                    child: Text('click me'),
-                  ),
-                )
+                
               ],
             ),
           )
