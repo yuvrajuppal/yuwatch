@@ -2,6 +2,7 @@ class API {
   static const hostconnect = "http://yuvrajuppal.in/yu_4odtYXxiZD3cI1t_watch_php";
   static const hostconnectuser = "$hostconnect/user";
 
+// public api added
   //signup user
   static const validate_email = "$hostconnect/user/validate_email.php";
   static const signup = "$hostconnect/user/signup.php";
