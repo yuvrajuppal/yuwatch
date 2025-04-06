@@ -47,17 +47,16 @@ class allmoviesdata {
 }
 
 class getappversion {
-  String? version,download_url;
-  getappversion({required this.version , required this.download_url});
+  String? version, download_url;
+  getappversion({required this.version, required this.download_url});
 
   factory getappversion.fromJson(Map<String, dynamic> json) {
     return getappversion(
       version: json['version'],
-      download_url:json['download_url'],
+      download_url: json['download_url'],
     );
   }
 }
-
 
 class _DisplaypageState extends State<Displaypage> {
   Future<void> loadImageLinks() async {
@@ -75,9 +74,9 @@ class _DisplaypageState extends State<Displaypage> {
   }
 
   void getcurrentappversion() async {
-    String? currentAppVersion,LatestAppversion, download_url_main;
+    String? currentAppVersion, LatestAppversion, download_url_main;
     try {
-      currentAppVersion='1.00';
+      currentAppVersion = '1.00';
       print('Requesting: ${API.appversion}');
       var response = await http.post(Uri.parse(API.appversion));
       if (response.statusCode == 200) {
@@ -86,14 +85,18 @@ class _DisplaypageState extends State<Displaypage> {
         if (data.isNotEmpty) {
           getappversion getlatestappversion =
               getappversion.fromJson(data.first);
-              LatestAppversion=getlatestappversion.version;
-              download_url_main = getlatestappversion.download_url;
+          LatestAppversion = getlatestappversion.version;
+          download_url_main = getlatestappversion.download_url;
           print(getlatestappversion.version);
           print(download_url_main);
-          if(currentAppVersion==LatestAppversion){
-            
-          }else{
-Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>UpdatePage(download_url: download_url_main!,)));
+          if (currentAppVersion == LatestAppversion) {
+          } else {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UpdatePage(
+                          download_url: download_url_main!,
+                        )));
           }
         } else {
           print('appversion : na');
