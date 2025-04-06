@@ -1,9 +1,5 @@
 class API {
-<<<<<<< HEAD
   static const hostconnect = "http://yuvrajuppal.in/yu_4odtYXxiZD3cI1t_watch_php";
-=======
-  static const hostconnect = "http://192.168.1.6/yu_4odtYXxiZD3cI1t_watch_php";
->>>>>>> 53bacbc375db00de66c08a266a5231ef6e1c42cc
   static const hostconnectuser = "$hostconnect/user";
 
   //signup user
